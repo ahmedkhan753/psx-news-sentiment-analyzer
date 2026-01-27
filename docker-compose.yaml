@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  psx-news-sentiment:
+    image: ghcr.io/psx-bot/psx-news-sentiment:staging
+    environment:
+      - APP_ENV=production
+      - PORT=4200
+      - REDIS_URL=127.0.0.1:6379
+      - NEWS_FETCHER_SUB=projects/psx-bot/subscriptions/news-sentiment-news-fetcher-topic-sub
+      - GOOGLE_CLOUD_PROJECT=psx-bot
+      - NEWS_PROCESSED_TOPIC=projects/psx-bot/topics/news-sentiment-processor-topic
+      - PUB_SUB_TIMEOUT=604800
+    ports:
+      - "0.0.0.0:4200:4200"
+    restart: on-failure
+
+networks:
+  local-dev:
+    driver: bridge
