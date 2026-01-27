@@ -6,6 +6,7 @@ class NationalNewsPayloadType(TypedDict):
     description: str
     source: str
     primaryId: str
+    sentiment: int
 
 class NationalNewsSentimentProcessedType(TypedDict):
     id: str

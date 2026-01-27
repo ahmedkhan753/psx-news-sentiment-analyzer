@@ -50,7 +50,8 @@ class CsvReader:
         for item in parsed:
             id = item['id']
             headline = item['headline']
-            data = NationalNewsPayloadType(primaryId=primary_id, id=id, source=source, headline=headline, description='')
+            sentiment = item.get('sentiment', 0)
+            data = NationalNewsPayloadType(primaryId=primary_id, id=id, source=source, headline=headline, description='', sentiment=sentiment)
             news_list.append(data)
         return news_list
     
