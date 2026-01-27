@@ -35,16 +35,17 @@ class SentimentAnalysis:
             pol_score['id'] = data.get('id')
             pol_score['primary_id'] = data.get('primaryId')
             pol_score['source'] = data.get('source')
-            # and a label of -1 if compound is less than -0.2.
+            results.append(pol_score)
+        
         # Everything else will be 0.
         df = pd.DataFrame.from_records(results)
-        df['label'] = 0
         
         # Check if manual 'sentiment' was provided in the input sentences
         manual_labels = [data.get('sentiment') for data in headlines if 'sentiment' in data]
         if len(manual_labels) == len(headlines):
             df['label'] = manual_labels
         else:
+            df['label'] = 0
             df.loc[df['compound'] > 0.2, 'label'] = 1
             df.loc[df['compound'] < -0.2, 'label'] = -1
 
