@@ -2,7 +2,7 @@ version: "3"
 
 services:
   psx-news-sentiment:
-    image: ghcr.io/psx-bot/psx-news-sentiment:staging
+    build: .
     environment:
       - APP_ENV=production
       - PORT=4200

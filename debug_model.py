@@ -30,7 +30,7 @@ def debug_model():
     nb.fit(X_vect, y)
     X_train = x # for consistency with sc.predict
     
-    test_sentence = "Stocks plunge 432 points as IMF accord remains clouded"
+    test_sentence = "Nearly 100 dead as Indian states swelter in heat"
     print(f"\n--- Predicting for: '{test_sentence}' ---")
     
     # Check if words are in vocabulary
