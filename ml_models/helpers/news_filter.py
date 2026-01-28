@@ -36,5 +36,12 @@ class NewsFilter:
         return names
     
     def __in_array(self, array:list, sub_string:str) -> bool:
-        exists = [x for x in array if(x in sub_string)]
-        return bool(exists)
+        import re
+        sub_string_lower = sub_string.lower()
+        for x in array:
+            # Match whole word only to avoid generic filtering
+            # escaped to handle any special chars in the array items
+            pattern = r'\b' + re.escape(str(x).lower()) + r'\b'
+            if re.search(pattern, sub_string_lower):
+                return True
+        return False

@@ -19,7 +19,7 @@ class SentimentClassifier:
         x = df.headline
         y = df.label
         X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-        vect = CountVectorizer(max_features=1000, binary=True, stop_words='english')
+        vect = CountVectorizer(max_features=5000, binary=True, stop_words='english', ngram_range=(1, 2))
         X_train_vect = vect.fit_transform(X_train)
         counts = df.label.value_counts()
         self.__print_if_verbose(counts)

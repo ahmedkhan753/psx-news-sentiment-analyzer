@@ -24,13 +24,13 @@ def debug_model():
     df_train = df[df.label != 0]
     x = df_train.headline
     y = df_train.label
-    vect = CountVectorizer(stop_words='english', binary=True)
+    vect = CountVectorizer(stop_words='english', binary=True, ngram_range=(1, 2), max_features=5000)
     X_vect = vect.fit_transform(x)
     nb = MultinomialNB()
     nb.fit(X_vect, y)
     X_train = x # for consistency with sc.predict
     
-    test_sentence = "ATC issues non-bailable arrest warrant for PTI chairman "
+    test_sentence = "Stocks plunge 432 points as IMF accord remains clouded"
     print(f"\n--- Predicting for: '{test_sentence}' ---")
     
     # Check if words are in vocabulary
